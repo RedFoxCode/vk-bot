@@ -47,9 +47,11 @@ var vkBot = vkModule(config.access_token);
 	входящих сообщений
 */
 vkBot.addListener.messages(function(message) {
-	var structure = message.body.split(" "); // Структура сообщения
+	var text = message.body.replace("\n", " "); 
 
-	var method = message.body.split(" ")[0].toLowerCase(); // Название метода который вызывают
+	var structure = text.split(" "); // Структура сообщения
+
+	var method = text.split(" ")[0].toLowerCase(); // Название метода который вызывают
 
 	/* 
 		Проверяем, существует ли
