@@ -4,11 +4,12 @@ module.exports = function(message, context) {
 	api.docs.search({
 		q: context.searchString + " .gif",
 		offset: 1,
-		count: 1
+		count: 100
 	}, function(response) {
-		var gif = response.response.items[0];
+		var items = response.response.items;
+		var item = items[Math.floor(Math.random() * items.length)];
 
-		var attachment = "doc" + gif.owner_id + "_" + gif.id;
+		var attachment = "doc" + item.owner_id + "_" + item.id;
 
 		message.send("&#128121;", {
 			attachment: attachment,

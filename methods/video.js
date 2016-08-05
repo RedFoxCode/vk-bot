@@ -4,11 +4,12 @@ module.exports = function(message, context) {
 	api.video.search({
 		q: context.searchString,
 		offset: 1,
-		count: 1
+		count: 100
 	}, function(response) {
-		var gif = response.response.items[0];
+		var items = response.response.items;
+		var item = items[Math.floor(Math.random() * items.length)];
 
-		var attachment = "video" + gif.owner_id + "_" + gif.id;
+		var attachment = "video" + item.owner_id + "_" + item.id;
 
 		message.send("&#128121;", {
 			attachment: attachment,

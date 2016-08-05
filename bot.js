@@ -5,7 +5,7 @@
 	2. Вам надо подправить id
 		 создателя бота в конфиге
 
-	* Ссылка на получение токена - oauth.vk.com/authorize?client_id=3682744&scope=messages,audio,video,docs&response_type=token
+	* Ссылка на получение токена - oauth.vk.com/authorize?client_id=3682744&scope=messages,audio,video,docs,photos&response_type=token
 	** Когда перейдете по ссылке нажмите "Разрешить", после скопируйте текст из адрессной строки
 		который идет после #access_token= до следующег &
 
@@ -66,11 +66,10 @@ vkBot.addListener.messages(function(message) {
 	// Создаем контекст
 	var context = {
 		isChat: !!message.chat_active, // Проверяем, беседе ли это
-		isBanned: false, // В будущем будет добавлена функция бана
-		isBotOwner: message.user_info.id == config.bot_owner_id, // Проверяем, отправил ли сообщение владелец бота
 		arguments: structure.slice(1), // Аргументы вызоыва метода
 		searchString: structure.slice(1).join(" "), // Поисковая строка
-		vkBot: vkBot // Объект бота
+		vkBot: vkBot, // Объект бота
+		vkModule: vkModule // Модуль вк
 	}
 
 	// Вызываем обработчик метода

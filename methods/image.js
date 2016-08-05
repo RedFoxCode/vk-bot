@@ -1,7 +1,7 @@
 module.exports = function(message, context) {
 	var api = context.vkBot.api;
 
-	api.audio.search({
+	api.photos.search({
 		q: context.searchString,
 		offset: 1,
 		count: 100
@@ -9,7 +9,7 @@ module.exports = function(message, context) {
 		var items = response.response.items;
 		var item = items[Math.floor(Math.random() * items.length)];
 
-		var attachment = "audio" + item.owner_id + "_" + item.id;
+		var attachment = "photo" + item.owner_id + "_" + item.id;
 
 		message.send("&#128121;", {
 			attachment: attachment,
